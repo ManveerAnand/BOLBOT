@@ -1,0 +1,37 @@
+{
+  "name": "bolbot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Discord bot that translates every message into each member's language, using a local model on a Mac.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "tsx src/index.ts",
+    "test": "vitest run",
+    "db:migrate": "tsx scripts/migrate.ts",
+    "register-commands": "tsx scripts/registerCommands.ts",
+    "detect": "tsx scripts/detectLanguage.ts",
+    "model:test": "tsx scripts/modelSmokeTest.ts",
+    "model:matrix": "tsx scripts/modelLanguageMatrix.ts",
+    "model:bench": "tsx scripts/benchmark.ts"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.4.1",
+    "discord.js": "^14.27.0",
+    "dotenv": "^16.6.1",
+    "fasttext.wasm": "^1.0.1",
+    "pino": "^9.9.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^24.3.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}

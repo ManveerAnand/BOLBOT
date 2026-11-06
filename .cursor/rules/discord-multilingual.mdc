@@ -1,0 +1,27 @@
+---
+description: Working rules for the Discord multilingual translation layer
+alwaysApply: true
+---
+
+# Discord multilingual translation layer
+
+Implement **one phase at a time**. Do not generate the entire project in a single pass. Do not continue to the next phase while the current one is failing.
+
+## Product constraints
+
+- No cloud translation APIs. Local TranslateGemma 4B 4-bit via oMLX only.
+- Do not persist Discord message contents. SQLite stores IDs and sync metadata only.
+- Never log raw Discord content or secrets.
+- Keep Discord handlers thin. Keep model-specific code behind `TranslationProvider`.
+- Keep SQLite access inside repositories.
+- Every network call needs timeout/error handling. Every queued operation must be idempotent.
+- Protect against stale message-edit results.
+
+## Disk and RAM (Mac mini M4, 16 GB)
+
+- Use only `mlx-community/translategemma-4b-it-4bit`. Never download 12B/27B or extra models.
+- Keep a single copy of the weights in the oMLX model dir. Do not keep a duplicate Hugging Face cache.
+- Bind the model server to `127.0.0.1` only.
+- Prefer RAM-only inference. Do not enable an unbounded SSD KV cache.
+- Abort large downloads if free disk would fall below ~15 GB.
+- After each phase: `npm run build`, `npm test`, fix errors, summarize files, give exact manual verification commands.
