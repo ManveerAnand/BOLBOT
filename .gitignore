@@ -10,3 +10,4 @@ tmp/
 models/
 .omlx-cache/
 *.tsbuildinfo
+._*
