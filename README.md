@@ -1,119 +1,96 @@
 # BOLBOT
 
-A Discord bot that lets a mixed-language server talk as one group. Everyone writes in their own language, and every message appears in each member's language, under the original author's name.
+**Your squad speaks five languages. Your Discord doesn't have to choose one.**
 
-Translation runs on your own Mac with a local model. No message text leaves the machine for a cloud service, and none is stored on disk.
+BOLBOT translates your Discord server live. Everyone types in their own language and reads everyone else in theirs, under each person's real name. No copy-pasting into a translator, no "English only" rule, nobody left out of the callouts.
+
+It's free, it runs on your own Mac, and your chats never leave it.
 
 [![CI](https://github.com/ManveerAnand/BOLBOT/actions/workflows/ci.yml/badge.svg)](https://github.com/ManveerAnand/BOLBOT/actions/workflows/ci.yml)
 
-## How it works
+## What it feels like
 
-- **Rooms and views.** A room such as `general` gets one channel per enabled language: `general-en`, `general-zh`, `general-tr` and so on.
-- **Pick a language once.** Members click their language on the welcome message, or use `/language set`. The bot gives them that language's role, so they see only their own channels.
-- **Write anywhere, read everywhere.** A message in any view is copied into every other view of the room. Same-language views get it as is. Other views get one translation each, posted through a webhook with the author's name.
-- **Stays in sync.** Edits update every copy, deleting the original deletes the copies, and replies get a link back to the message they answer. Images, files and stickers come along with the copy.
-- **Source language is detected for you**, with fastText plus script checks for short or mixed messages.
+Emre writes in the Turkish channel:
 
-## Languages
+> **Emre:** Bu akşam ranked oynayan var mı?
 
-English, Chinese, Indonesian, Japanese, Korean, Spanish, French, German, Hindi, Portuguese, Russian and Turkish.
+Everyone else sees it in their own channel, a second later:
 
-Up to 8 can be on at once by default (`MAX_ENABLED_LANGUAGES`). Each extra language adds one translation per message. To add a language the model supports, add an entry to [`src/language/registry.ts`](src/language/registry.ts).
+> **Emre:** Anyone playing ranked tonight? *(in #general-en)*
+>
+> **Emre:** 今晚有人打排位吗？ *(in #general-zh)*
+>
+> **Emre:** Ada yang main ranked malam ini? *(in #general-id)*
 
-## What you need
+Replies, edits, deletes, screenshots and stickers all follow along.
 
-- An Apple Silicon Mac. 16 GB of memory is enough.
-- [Node.js](https://nodejs.org) 22 or newer.
-- [oMLX](https://github.com/jundot/omlx) with the model `mlx-community/translategemma-4b-it-4bit` (about 2 GB).
-- A Discord application with a bot user and the **Message Content** intent turned on.
+## Why BOLBOT
 
-## Set up
+- **Free, for good.** No subscription and no API bill. The translator runs on your Mac.
+- **Private.** Messages are translated on your machine and never saved. Nothing goes to a cloud translator.
+- **Feels native.** Translations show up as the person who wrote them, not as a bot.
+- **12 languages.** English, Chinese, Indonesian, Japanese, Korean, Spanish, French, German, Hindi, Portuguese, Russian and Turkish.
+- **Set and forget.** It starts with your Mac and restarts itself if anything goes wrong.
 
-1. Clone the repo and install:
+## Get started
 
-   ```bash
-   git clone https://github.com/ManveerAnand/BOLBOT.git
-   cd BOLBOT
-   npm ci
-   cp .env.example .env
-   ```
+You need a Mac with Apple Silicon (M1 or newer), a Discord server where you're an admin, and about 10 minutes.
 
-2. Fill in `DISCORD_BOT_TOKEN`, `DISCORD_CLIENT_ID` and `DISCORD_GUILD_ID` in `.env`. The other settings have working defaults.
+**1. Install the free oMLX app** from [its releases page](https://github.com/jundot/omlx/releases) and drag it into Applications. It's what runs the translator.
 
-3. Invite the bot to your server with these permissions: Manage Roles, Manage Channels, Manage Webhooks, View Channels, Send Messages and Read Message History. In Server Settings → Roles, place the bot's role above the `Translator · …` roles so it can hand them out.
-
-4. Start oMLX on `127.0.0.1:8000`, either from the oMLX app or from a terminal:
-
-   ```bash
-   ~/.omlx/bin/omlx-cluster-python -m omlx.cli serve --host 127.0.0.1 --port 8000
-   ```
-
-5. Prepare the database and start the bot:
-
-   ```bash
-   npm run db:migrate
-   npm run start
-   ```
-
-6. In Discord, as an admin:
-   - `/translator room-create` to make a room, for example `general`.
-   - `/translator language-enable` for each language you want.
-   - `/translator welcome` in a channel everyone can see, so members can pick a language.
-
-## Keep it running on a Mac
-
-`deploy/macos/install.sh` sets up the model and the bot to start at every boot and restart if they crash. It works even when nobody is logged in to the account that owns the folder.
+**2. Open Terminal and paste this:**
 
 ```bash
-sudo deploy/macos/install.sh
+git clone https://github.com/ManveerAnand/BOLBOT.git ~/BOLBOT && ~/BOLBOT/setup.sh
 ```
 
-Keep the folder outside Documents, Desktop and Downloads: macOS doesn't let background jobs read those. The script runs the bot as the folder's owner, and writes logs to `logs/bot.log` and `~/.omlx/logs/bolbot-model.log`.
+If your Mac asks to install developer tools first, click Install, then paste the line again.
 
-To restart the bot after an update:
+Setup walks you through the rest:
+
+- installs what BOLBOT needs and downloads the translator (about 2 GB, once)
+- shows you how to make your Discord bot and checks the token works
+- opens the invite page so you can add the bot to your server
+- starts BOLBOT and keeps it running whenever your Mac is on
+
+**3. In your Discord server, run three commands:**
+
+| Command | What it does |
+|---|---|
+| `/translator room-create` | Makes a room, for example `general`, with a channel for each language |
+| `/translator language-enable` | Turns on a language. Run it once per language your friends speak |
+| `/translator welcome` | Posts the language picker in a channel everyone can see |
+
+That's it. Friends click their language once and they're in.
+
+## FAQ
+
+**Does it cost anything?**
+No. BOLBOT and the translator are free, and there's no hosting to pay for.
+
+**Does my Mac need to stay on?**
+Yes, BOLBOT works while your Mac is awake. For a server that's always on, stop the Mac sleeping in System Settings → Energy.
+
+**What about Windows?**
+Not yet. The translator currently needs an Apple Silicon Mac. Watch the repo to hear when Windows lands.
+
+**How good are the translations?**
+Great for everyday chat and game talk, and strongest into English. Slang and very short messages can come out a little stiff.
+
+**Are my messages stored?**
+No. BOLBOT keeps only the IDs it needs to match up copies. The text is translated in memory and forgotten.
+
+**How many languages can I turn on?**
+Up to 8 at once. Every extra language means one more translation per message, so turn on the ones your friends actually use.
+
+**How do I update it?**
 
 ```bash
-git pull && npm ci && sudo launchctl kickstart -k system/com.bolbot.bot
+cd ~/BOLBOT && git pull && ./setup.sh
 ```
 
-## Commands
-
-| Command | Who | What it does |
-|---|---|---|
-| `/language set` | Everyone | Choose the language you read and write |
-| `/language show` | Everyone | Show your language |
-| `/language list` | Everyone | List the languages the bot supports |
-| `/translator status` | Admins | Show whether the model and the bot are healthy |
-| `/translator room-create` | Admins | Create a room and its language channels |
-| `/translator room-list` | Admins | List rooms |
-| `/translator language-enable` | Admins | Turn a language on and create its channels |
-| `/translator language-disable` | Admins | Turn a language off, keeping its channels |
-| `/translator welcome` | Admins | Post the language picker. Post it again after enabling a language |
-| `/translator reconcile` | Admins | Repair missing roles, channels and webhooks |
-
-## Privacy
-
-- The model listens on `127.0.0.1` only.
-- The database (SQLite) holds Discord IDs and sync data, never message text.
-- Message text is held in memory only while it is being translated, and is never written to the logs.
-- Webhook tokens are encrypted on disk with a key kept in `data/webhook.key`.
-
-## Development
-
-```bash
-npm test                 # unit tests
-npm run build            # type check and compile
-npm run detect -- --text "Bu akşam oyun var mı?"
-npm run model:test -- --from tr --to en --text "Bu akşam oyun var mı?"
-```
-
-The full design is in [`docs/architecture.md`](docs/architecture.md).
-
-## Limits
-
-- Translation quality is that of a small 4B model. It is strongest into English, and other directions can read stiffly.
-- One server per running bot (`DISCORD_GUILD_ID`).
+Manual setup, all the commands, the privacy details and how to uninstall are in the [advanced guide](docs/advanced.md).
 
 ## License
 
-[MIT](LICENSE)
+Free and open source under the [MIT license](LICENSE). Bug reports and ideas are welcome in [Issues](https://github.com/ManveerAnand/BOLBOT/issues).
