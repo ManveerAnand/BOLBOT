@@ -1,6 +1,7 @@
 # Starts BOLBOT on Windows: the portable Ollama if setup installed one, then the bot. Setup runs this at sign-in.
-Set-Location -LiteralPath $PSScriptRoot
-$runtime = Join-Path $PSScriptRoot 'runtime'
+$root = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
+Set-Location -LiteralPath $root
+$runtime = Join-Path $root 'runtime'
 if (Test-Path (Join-Path $runtime 'node')) { $env:Path = "$(Join-Path $runtime 'node');$env:Path" }
 if (Test-Path (Join-Path $runtime 'ollama\ollama.exe')) {
   $env:OLLAMA_MODELS = Join-Path $runtime 'models'

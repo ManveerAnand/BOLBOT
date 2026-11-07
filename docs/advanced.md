@@ -90,14 +90,7 @@ git pull && npm ci && sudo launchctl kickstart -k system/com.bolbot.bot
 
 ## Development
 
-```bash
-npm test                 # unit tests
-npm run build            # type check and compile
-npm run detect -- --text "Bu akşam oyun var mı?"
-npm run model:test -- --from tr --to en --text "Bu akşam oyun var mı?"
-```
-
-The full design is in [`docs/architecture.md`](docs/architecture.md).
+The project layout, how to run it for development and the ground rules are in [CONTRIBUTING.md](../CONTRIBUTING.md). The full design is in [architecture.md](architecture.md).
 
 ## Limits
 

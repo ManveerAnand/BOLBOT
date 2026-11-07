@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="docs/logo.svg" alt="BOLBOT logo" width="128" />
+  <img src="docs/assets/logo.svg" alt="BOLBOT logo" width="128" />
 
   <h1>BOLBOT</h1>
 
@@ -22,13 +22,13 @@ It's free, it runs on your own PC or Mac, and your chats never leave it.
 Set it up with three commands, then everyone just chats:
 
 <p align="center">
-  <img src="docs/demo/desktop.svg" alt="Animation: an admin creates a room, turns on Turkish and Chinese, posts the language picker, and a Turkish message shows up in English while the English reply shows up in Turkish" width="100%" />
+  <img src="docs/assets/demo-desktop.svg" alt="Animation: an admin creates a room, turns on Turkish and Chinese, posts the language picker, and a Turkish message shows up in English while the English reply shows up in Turkish" width="100%" />
 </p>
 
 <details>
 <summary>On the Discord phone app</summary>
 <p align="center">
-  <img src="docs/demo/mobile.svg" alt="The same setup and live translation on the Discord phone app" width="320" />
+  <img src="docs/assets/demo-mobile.svg" alt="The same setup and live translation on the Discord phone app" width="320" />
 </p>
 </details>
 
@@ -117,4 +117,4 @@ Manual setup, all the commands, the privacy details and how to uninstall are in 
 
 ## License
 
-Free and open source under the [MIT license](LICENSE). Bug reports and ideas are welcome in [Issues](https://github.com/ManveerAnand/BOLBOT/issues).
+Free and open source under the [MIT license](LICENSE). Bug reports and ideas are welcome in [Issues](https://github.com/ManveerAnand/BOLBOT/issues), and [CONTRIBUTING.md](CONTRIBUTING.md) explains how the code is laid out.

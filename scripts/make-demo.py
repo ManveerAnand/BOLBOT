@@ -1,7 +1,7 @@
-"""Builds the README animations: docs/demo/desktop.svg and docs/demo/mobile.svg.
+"""Builds the README animations: docs/assets/demo-desktop.svg and docs/assets/demo-mobile.svg.
 
 Plain SVG with CSS keyframes, so GitHub plays them in the README with no video or GIF.
-Every name in them is made up. Run: python docs/demo/make_demo.py
+Every name in them is made up. Run: python scripts/make-demo.py
 """
 from pathlib import Path
 from xml.sax.saxutils import escape
@@ -351,7 +351,7 @@ def mobile(path):
 
 
 if __name__ == "__main__":
-    here = Path(__file__).parent
-    desktop(here / "desktop.svg")
-    mobile(here / "mobile.svg")
-    print("wrote", here / "desktop.svg", "and", here / "mobile.svg")
+    assets = Path(__file__).resolve().parent.parent / "docs" / "assets"
+    desktop(assets / "demo-desktop.svg")
+    mobile(assets / "demo-mobile.svg")
+    print("wrote", assets / "demo-desktop.svg", "and", assets / "demo-mobile.svg")

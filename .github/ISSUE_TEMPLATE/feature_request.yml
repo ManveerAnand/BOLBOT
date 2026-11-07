@@ -1,0 +1,15 @@
+name: Idea or new language
+description: Suggest a feature, or ask for a language BOLBOT doesn't support yet.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like?
+      description: For a language, say which one and roughly how many people in your server speak it.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why does it matter to your server?

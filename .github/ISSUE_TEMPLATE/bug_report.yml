@@ -1,0 +1,27 @@
+name: Something's broken
+description: Setup failed, the bot went quiet, or a message didn't come through.
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what happened instead.
+    validations:
+      required: true
+  - type: dropdown
+    id: system
+    attributes:
+      label: Your computer
+      options:
+        - Windows 11
+        - Windows 10
+        - Mac with Apple Silicon
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Last lines of logs/bot.log
+      description: Paste the end of the log from your BOLBOT folder. Remove anything private first. Never paste your bot token.
+      render: text

@@ -168,7 +168,7 @@ if ($LASTEXITCODE -ne 0) { Fail 'Setting up the database failed. Run setup again
 Ok 'Database ready'
 
 Step '6/6  Start BOLBOT'
-$runner = Join-Path $PWD 'run.ps1'
+$runner = Join-Path $PWD 'deploy\windows\run.ps1'
 $answer = Read-Host '  Start BOLBOT now and every time you sign in to Windows? [Y/n]'
 if ($answer -match '^[Nn]') {
   Write-Host "  To start it yourself: powershell -ExecutionPolicy Bypass -File `"$runner`""
