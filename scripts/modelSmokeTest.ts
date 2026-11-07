@@ -15,7 +15,7 @@ async function main(): Promise<void> {
   if (!healthy) {
     throw new TranslationError(
       "model_offline",
-      `oMLX is not reachable at ${env.TRANSLATION_BASE_URL}`,
+      `The translation model is not reachable at ${env.TRANSLATION_BASE_URL}`,
     );
   }
 

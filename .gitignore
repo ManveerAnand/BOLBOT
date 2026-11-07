@@ -11,3 +11,4 @@ models/
 .omlx-cache/
 *.tsbuildinfo
 ._*
+runtime/

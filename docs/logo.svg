@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="BOLBOT logo">
+  <rect width="256" height="256" rx="58" fill="#1E1530"/>
+  <!-- the message as written -->
+  <path d="M74 54h86a28 28 0 0 1 28 28v38a28 28 0 0 1-28 28H96l-34 26 6-26a28 28 0 0 1-22-27V82a28 28 0 0 1 28-28z" fill="#3DDC97"/>
+  <g fill="none" stroke="#1E1530" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M64 120 82 72l18 48M71 103h22"/>
+  </g>
+  <!-- the same message, in your language -->
+  <path d="M114 104h70a28 28 0 0 1 28 28v36a28 28 0 0 1-22 27l6 27-34-26h-48a28 28 0 0 1-28-28v-36a28 28 0 0 1 28-28z" fill="#FF6B57" stroke="#1E1530" stroke-width="10" stroke-linejoin="round" paint-order="stroke"/>
+  <g fill="none" stroke="#1E1530" stroke-width="11" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M156 117v7M130 132h52M142 140c6 18 18 32 36 42M170 140c-6 18-18 32-36 42"/>
+  </g>
+</svg>

@@ -24,7 +24,8 @@ env_set() {
   chmod 600 .env
 }
 # Calls Discord as the bot. The token goes in on stdin, so it never shows in the process list.
-discord() { printf 'Authorization: Bot %s\n' "$(env_get DISCORD_BOT_TOKEN)" | curl -fsS -H @- "$API$1"; }
+discord() { printf 'Authorization: Bot %s\n' "$(env_get DISCORD_BOT_TOKEN)" | curl -fsS -A 'DiscordBot (https://github.com/ManveerAnand/BOLBOT, 1.0)' -H @- "$API$1"; }
+discord_status() { printf 'Authorization: Bot %s\n' "$(env_get DISCORD_BOT_TOKEN)" | curl -s -o /dev/null -w '%{http_code}' -A 'DiscordBot (https://github.com/ManveerAnand/BOLBOT, 1.0)' -H @- "$API$1"; }
 json() { node -e 'let d="";process.stdin.on("data",c=>d+=c).on("end",()=>{const j=JSON.parse(d);console.log(eval(process.argv[1]))})' "$1"; }
 
 step "1/6  Checking your Mac"
@@ -82,7 +83,13 @@ EOF
   env_set DISCORD_BOT_TOKEN "$token"
   unset token
 fi
-app=$(discord /applications/@me) || { env_set DISCORD_BOT_TOKEN ""; fail "Discord didn't accept that token. Copy it again from the Bot page and run ./setup.sh again."; }
+if ! app=$(discord /applications/@me 2>/dev/null); then
+  if [ "$(discord_status /applications/@me)" = 401 ]; then
+    env_set DISCORD_BOT_TOKEN ""
+    fail "Discord didn't accept that token. Copy it again from the Bot page and run ./setup.sh again."
+  fi
+  fail "Couldn't reach Discord. Check your internet connection and run ./setup.sh again."
+fi
 # 1<<18 and 1<<19 are Discord's flags for the Message Content intent.
 until [ "$(printf '%s' "$app" | json '(j.flags & (1<<18 | 1<<19)) ? 1 : 0')" = 1 ]; do
   read -r -p "  Turn on Message Content Intent on the Bot page, click Save, then press Enter. " _

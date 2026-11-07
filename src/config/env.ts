@@ -10,6 +10,8 @@ const envSchema = z.object({
     .string()
     .url()
     .default("http://127.0.0.1:8000/v1"),
+  // Which local server runs the model: oMLX on a Mac, Ollama on Windows.
+  TRANSLATION_RUNNER: z.enum(["omlx", "ollama"]).default("omlx"),
   TRANSLATION_MODEL: z
     .string()
     .min(1)

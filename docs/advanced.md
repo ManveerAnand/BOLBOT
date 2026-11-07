@@ -106,6 +106,17 @@ The full design is in [`docs/architecture.md`](docs/architecture.md).
 
 ## Uninstall
 
+### Windows
+
+```powershell
+Unregister-ScheduledTask -TaskName BOLBOT -Confirm:$false
+Get-Process ollama -ErrorAction SilentlyContinue | Stop-Process
+```
+
+Then delete the folder you installed BOLBOT to. Node.js, Ollama and the model were all inside it. If you already had Ollama, remove the model with `ollama rm translategemma:4b`.
+
+### Mac
+
 ```bash
 sudo launchctl bootout system/com.bolbot.bot
 sudo launchctl bootout system/com.bolbot.model
