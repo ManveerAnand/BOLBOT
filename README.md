@@ -17,6 +17,8 @@ BOLBOT translates your Discord server live. Everyone types in their own language
 
 It's free, it runs on your own PC or Mac, and your chats never leave it.
 
+> **Why I built this.** My Discord server has friends who speak different languages, and I couldn't find a translation bot that just let everyone talk. The good ones charge a monthly fee or cap your translations, and every message goes through their servers. So I built one that runs on my own computer, translates both ways, and costs nothing. — [Manveer](https://github.com/ManveerAnand)
+
 ## What it feels like
 
 Set it up with three commands, then everyone just chats:
@@ -41,6 +43,20 @@ Replies, edits, deletes, screenshots and stickers all follow along.
 - **Feels native.** Translations show up as the person who wrote them, not as a bot.
 - **12 languages.** English, Chinese, Indonesian, Japanese, Korean, Spanish, French, German, Hindi, Portuguese, Russian and Turkish.
 - **Set and forget.** It starts with your computer and restarts itself if anything goes wrong.
+
+### Compared with hosted translation bots
+
+Bots like iTranslator and Talksy are great if you'd rather not run anything yourself. Here's how BOLBOT differs:
+
+| | BOLBOT | Hosted translation bots |
+|---|---|---|
+| Price | Free, no limits | Free tier with monthly limits, then a subscription |
+| Where messages go | Stay on your computer | Through the bot company's servers |
+| Who runs it | You, on your own PC or Mac | The bot company |
+| Source code | Open (MIT) | Closed |
+| Languages | 12 | 100+ |
+
+If you need dozens of languages or can't keep a computer on, a hosted bot is the better fit. If you want it free, private and yours, that's what BOLBOT is for.
 
 ## Get started
 
