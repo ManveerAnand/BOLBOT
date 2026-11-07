@@ -19,17 +19,18 @@ It's free, it runs on your own PC or Mac, and your chats never leave it.
 
 ## What it feels like
 
-Emre writes in the Turkish channel:
+Set it up with three commands, then everyone just chats:
 
-> **Emre:** Bu akşam ranked oynayan var mı?
+<p align="center">
+  <img src="docs/demo/desktop.svg" alt="Animation: an admin creates a room, turns on Turkish and Chinese, posts the language picker, and a Turkish message shows up in English while the English reply shows up in Turkish" width="100%" />
+</p>
 
-Everyone else sees it in their own channel, a second later:
-
-> **Emre:** Anyone playing ranked tonight? *(in #general-en)*
->
-> **Emre:** 今晚有人打排位吗？ *(in #general-zh)*
->
-> **Emre:** Ada yang main ranked malam ini? *(in #general-id)*
+<details>
+<summary>On the Discord phone app</summary>
+<p align="center">
+  <img src="docs/demo/mobile.svg" alt="The same setup and live translation on the Discord phone app" width="320" />
+</p>
+</details>
 
 Replies, edits, deletes, screenshots and stickers all follow along.
 
